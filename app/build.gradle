@@ -1,0 +1,142 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-android-extensions'
+    id 'androidx.navigation.safeargs.kotlin'
+    id 'dagger.hilt.android.plugin'
+}
+
+ext {
+
+    // Libraries
+    CORE_KTX_VERSION = "1.8.0"
+    APPCOMPAT_VERSION = "1.4.2"
+    CONSTRAINTLAYOUT_VERSION = "2.1.4"
+    MATERIAL_VERSION = "1.6.1"
+
+    COROUTINES_VERSION = "1.6.1"
+
+    ACTIVITY_VERSION = "1.2.0-rc01"
+    FRAGMENT_VERSION = "1.3.0-rc01"
+    LIFECYCLE_VERSION = "2.4.1"
+    LEGACY_SUPPORT_VERSION = "1.0.0"
+    RETROFIT2_VERSION = "2.9.0"
+
+    PICASSO_VERSION = "2.71828"
+    LOGGING_INTERCEPTOR_VERSION = "4.9.0"
+    DATASTORE_PREFERENCES_VERSION = "1.0.0-alpha04"
+    RETROFIT2_KOTLINX_SERIALIZATION_CONVERTER_VERSION = "0.8.0"
+    HILT_JETPACK_VERSION = "1.0.0-alpha03"
+    KOTLINX_SERIALIZATION_JSON_VERSION = "1.0.0"
+    GSON_VERSION = "2.9.0"
+
+
+    //test
+    JUNIT_VERSION = "4.13.2"
+    ANDROID_JUNIT_VERSION = "1.1.3"
+    RUNNER_VERSION = "1.2.0"
+    ESPRESSO_VERSION = "3.4.0"
+
+}
+
+android {
+    compileSdk 32
+
+    defaultConfig {
+        applicationId "com.altagem.cafeyn"
+        minSdk 21
+        targetSdk 32
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        debug {
+            debuggable = true
+            minifyEnabled false
+            buildConfigField "String", "BASE_URL", "\"http://jsonplaceholder.typicode.com/\""
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASE_URL", "\"http://jsonplaceholder.typicode.com/\""
+
+        }
+    }
+
+    buildFeatures {
+        dataBinding true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    //Android
+    implementation "androidx.core:core-ktx:" + CORE_KTX_VERSION
+    implementation "androidx.appcompat:appcompat:" + APPCOMPAT_VERSION
+    implementation "com.google.android.material:material:" + MATERIAL_VERSION
+    implementation "androidx.constraintlayout:constraintlayout:" + CONSTRAINTLAYOUT_VERSION
+    implementation "androidx.fragment:fragment-ktx:" + FRAGMENT_VERSION
+    implementation "androidx.activity:activity-ktx:" + ACTIVITY_VERSION
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:" + KOTLIN_VERSION
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:" + KOTLINX_SERIALIZATION_JSON_VERSION
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+
+    //Test
+    testImplementation "junit:junit:" +JUNIT_VERSION
+    androidTestImplementation "androidx.test.ext:junit:"+ ANDROID_JUNIT_VERSION
+    androidTestImplementation "androidx.test.espresso:espresso-core:"+ESPRESSO_VERSION
+
+    //Architecture Components - Lifecycle
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:"+ LIFECYCLE_VERSION
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:" + LIFECYCLE_VERSION
+
+    //Architecture Components - DataStore
+    implementation "androidx.datastore:datastore-preferences:" + DATASTORE_PREFERENCES_VERSION
+
+    //Retrofit2
+    implementation "com.squareup.retrofit2:retrofit:" + RETROFIT2_VERSION
+    implementation "com.squareup.retrofit2:converter-gson:" + RETROFIT2_VERSION
+
+    // OkHttp3 logging-interceptor
+    implementation "com.squareup.okhttp3:logging-interceptor:" + LOGGING_INTERCEPTOR_VERSION
+
+    // Picasso
+    implementation "com.squareup.picasso:picasso:" + PICASSO_VERSION
+
+    //Architecture Components - Navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:" + NAVIGATION_VERSION
+    implementation "androidx.navigation:navigation-ui-ktx:" + NAVIGATION_VERSION
+
+    // Hilt
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:" + HILT_JETPACK_VERSION
+    kapt 'androidx.hilt:hilt-compiler:' + HILT_JETPACK_VERSION
+    implementation "com.google.dagger:hilt-android:2.38.1"
+    kapt "com.google.dagger:hilt-compiler:2.38.1"
+
+    //Kotlin coroutine
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:" + COROUTINES_VERSION
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:" + COROUTINES_VERSION
+
+    //Gson
+    implementation "com.google.code.gson:gson:" + GSON_VERSION
+
+    //Room database
+    implementation "androidx.room:room-runtime:" + ROOM_VERSION
+    implementation "androidx.room:room-ktx:" + ROOM_VERSION
+    kapt "androidx.room:room-compiler:" + ROOM_VERSION
+
+}
