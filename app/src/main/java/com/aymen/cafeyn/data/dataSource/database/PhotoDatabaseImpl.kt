@@ -12,7 +12,7 @@ class PhotoDatabaseImpl @Inject constructor(
 
     override fun insertAll(photos: List<PhotoItem>) = photoDao.insertAll(photos)
 
-    override fun deleteAll(photos: List<PhotoItem>) = photoDao.deleteAll(photos)
+    override fun deleteAll() = photoDao.deleteAll()
 
 
 }

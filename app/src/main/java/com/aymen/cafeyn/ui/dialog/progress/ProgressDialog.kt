@@ -3,7 +3,7 @@ package com.aymen.cafeyn.ui.dialog.progress
 import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
-import com.altagem.cafeyn.R
+import com.aymen.cafeyn.R
 
 class ProgressDialog(context: Context, private val cancelable: Boolean = false) :
     AlertDialog(context) {

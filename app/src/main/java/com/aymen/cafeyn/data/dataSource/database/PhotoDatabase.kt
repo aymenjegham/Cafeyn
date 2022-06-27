@@ -10,6 +10,6 @@ interface PhotoDatabase {
 
     fun insertAll(photos: List<PhotoItem>)
 
-    fun deleteAll(photos: List<PhotoItem>)
+    fun deleteAll()
 
 }

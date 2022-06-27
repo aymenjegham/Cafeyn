@@ -5,6 +5,7 @@ import android.content.Context.CONNECTIVITY_SERVICE
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
+import android.util.DisplayMetrics
 
 fun Context?.isNetworkAvailable(): Boolean =
     this?.let {
@@ -28,3 +29,6 @@ fun Context?.isNetworkAvailable(): Boolean =
     } ?: run {
         return false
     }
+
+fun Context.dpToPx(dp: Float) =
+    dp * (resources.displayMetrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT)

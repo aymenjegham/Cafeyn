@@ -7,11 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.altagem.cafeyn.databinding.FragmentHomeBinding
 import com.aymen.cafeyn.data.model.Result
+import com.aymen.cafeyn.databinding.FragmentHomeBinding
 import com.aymen.cafeyn.global.helper.Navigation
 import com.aymen.cafeyn.ui.base.BaseFragment
-import com.aymen.cafeyn.ui.details.DetailsFragment
 import com.aymen.cafeyn.ui.home.adapter.PhotoAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -48,7 +47,8 @@ class HomeFragment : BaseFragment() {
 
         photoAdapter = PhotoAdapter(
             viewModel.navigate(),
-            requireContext()
+            requireContext(),
+            picasso
         )
         binding.adapter = photoAdapter
     }
@@ -62,7 +62,7 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun registerSubmitAdapter() {
-        viewModel.photoList.observe(viewLifecycleOwner) { result ->
+        viewModel.resultPhotoList.observe(viewLifecycleOwner) { result ->
 
             when (result.status) {
                 Result.Status.SUCCESS -> {

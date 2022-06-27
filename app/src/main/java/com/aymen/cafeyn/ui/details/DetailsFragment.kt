@@ -6,8 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
-import com.altagem.cafeyn.databinding.FragmentDetailsBinding
-import com.aymen.cafeyn.global.helper.Navigation
+import com.aymen.cafeyn.databinding.FragmentDetailsBinding
 import com.aymen.cafeyn.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 

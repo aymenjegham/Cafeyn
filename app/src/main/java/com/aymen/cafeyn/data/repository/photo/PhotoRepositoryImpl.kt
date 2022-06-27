@@ -26,7 +26,7 @@ class PhotoRepositoryImpl @Inject constructor(
     PhotoRepository {
     override fun getAllPhotos(): Flow<Result<List<PhotoItem>>?> {
         return flow {
-            emit(fetchCachedPhotos())
+
             emit(Result.loading())
             val result = getResponse(
                 request = { api.getAllPhotos() },
@@ -41,6 +41,7 @@ class PhotoRepositoryImpl @Inject constructor(
             }
 
             emit(result)
+            emit(fetchCachedPhotos())
         }.flowOn(Dispatchers.IO)
     }
 
