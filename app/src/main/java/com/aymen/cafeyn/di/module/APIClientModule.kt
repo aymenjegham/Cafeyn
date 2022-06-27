@@ -1,7 +1,7 @@
 package com.aymen.cafeyn.di.module
 
 
-import com.altagem.cafeyn.BuildConfig
+import com.aymen.cafeyn.BuildConfig
 import com.aymen.cafeyn.data.dataSource.api.APIClient
 import com.google.gson.Gson
 import dagger.Module

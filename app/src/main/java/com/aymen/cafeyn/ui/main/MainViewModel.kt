@@ -13,7 +13,4 @@ class MainViewModel @Inject constructor(
 ) : BaseViewModel(app) {
 
 
-    fun handleDestinationChange(destinationId: Int) {
-    }
-
 }

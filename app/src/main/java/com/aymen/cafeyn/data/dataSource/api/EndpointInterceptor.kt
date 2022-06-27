@@ -1,8 +1,6 @@
 package com.aymen.cafeyn.data.dataSource.api
 
 import android.content.Context
-import com.aymen.cafeyn.data.cache.Cache
-import com.aymen.cafeyn.data.model.Result
 import com.aymen.cafeyn.global.extension.isNetworkAvailable
 import com.aymen.cafeyn.global.utils.NoInternetException
 import dagger.hilt.android.qualifiers.ApplicationContext

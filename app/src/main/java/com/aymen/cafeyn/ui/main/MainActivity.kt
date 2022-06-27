@@ -7,9 +7,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
-import com.altagem.cafeyn.R
-import com.altagem.cafeyn.databinding.ActivityMainBinding
-import com.aymen.cafeyn.global.helper.DebugLog
+import com.aymen.cafeyn.R
+import com.aymen.cafeyn.databinding.ActivityMainBinding
 import com.aymen.cafeyn.ui.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
@@ -18,7 +17,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 @AndroidEntryPoint
 class MainActivity : BaseActivity() {
 
-    val viewModel: MainViewModel by viewModels()
+    private val viewModel by viewModels<MainViewModel>()
+
 
     private val navFragment: Fragment
         get() = nav_host_fragment
@@ -39,6 +39,7 @@ class MainActivity : BaseActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         val binding =
             DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
@@ -48,17 +49,10 @@ class MainActivity : BaseActivity() {
 
     private fun bind(binding: ActivityMainBinding) {
         binding.lifecycleOwner = this
-        setupNavGraph()
         binding.viewModel = viewModel
         registerMainObserver()
         setSupportActionBar(toolbar)
         initNavigation(binding)
-    }
-
-    private fun setupNavGraph() {
-        val navGraph = navController.navInflater.inflate(R.navigation.main_nav_graph)
-        navGraph.setStartDestination(R.id.home)
-        navController.graph = navGraph
     }
 
     private fun registerMainObserver() {
@@ -68,14 +62,6 @@ class MainActivity : BaseActivity() {
     private fun initNavigation(binding: ActivityMainBinding) {
         appBarConfiguration = AppBarConfiguration(navGraph)
         binding.toolbar.setupWithNavController(navController, appBarConfiguration)
-
-        initNavControllerListener()
-    }
-
-    private fun initNavControllerListener() {
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            viewModel.handleDestinationChange(destination.id)
-        }
     }
 
 }

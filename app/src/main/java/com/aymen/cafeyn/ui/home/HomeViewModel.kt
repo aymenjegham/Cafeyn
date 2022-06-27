@@ -19,27 +19,27 @@ class HomeViewModel @Inject constructor(
     app: Application,
     private val getAllPhotosUseCase: GetAllPhotosUseCase
 ) : BaseViewModel
-    (
-    app
-) {
+    (app) {
 
-    private val _photoList = MutableLiveData<Result<List<PhotoItem>>>()
-    val photoList = _photoList
+    private val _resultPhotoList = MutableLiveData<Result<List<PhotoItem>>>()
+    val resultPhotoList = _resultPhotoList
+
 
     init {
         fetchPhotos()
     }
 
     fun fetchPhotos() {
+
         viewModelScope.launch {
             getAllPhotosUseCase().collect {
-                _photoList.value = it
+                _resultPhotoList.value = it
             }
         }
     }
 
     fun navigate(): (Int) -> Unit = {
-        _photoList.value?.data?.get(it)?.let { photoItem ->
+        _resultPhotoList.value?.data?.get(it)?.let { photoItem ->
             navigate(Navigation.NavigationDetails(photoItem))
         }
     }

@@ -15,7 +15,7 @@ interface PhotoDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(photos: List<PhotoItem>)
 
-    @Delete
-    fun deleteAll(photos: List<PhotoItem>)
+    @Query("DELETE FROM Photo")
+    fun deleteAll()
 
 }

@@ -6,7 +6,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import com.aymen.cafeyn.global.helper.DebugLog
 import com.aymen.cafeyn.global.helper.Navigation
 import com.aymen.cafeyn.ui.data.DialogAction
 import com.aymen.cafeyn.ui.dialog.progress.ProgressDialog
@@ -36,7 +35,6 @@ abstract class BaseActivity : AppCompatActivity() {
 
 
     protected fun registerBaseObservers(viewModel: BaseViewModel) {
-
         registerProgressDialogObserver(viewModel)
         registerShowToastObserver(viewModel)
         registerSnackBarObserver(viewModel)
@@ -79,10 +77,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     fun showSnackBar(message: String, action: () -> Unit) {
-
-
-
-        Snackbar.make(window.decorView.rootView, message, Snackbar.LENGTH_INDEFINITE)
+        Snackbar.make(window.decorView.rootView, message, Snackbar.LENGTH_LONG)
             .setAction("Refresh", MyRefreshListener(action))
             .show()
     }

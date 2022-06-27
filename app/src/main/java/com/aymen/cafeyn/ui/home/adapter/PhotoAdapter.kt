@@ -5,16 +5,18 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.aymen.cafeyn.data.model.PhotoItem
+import com.squareup.picasso.Picasso
 
 class PhotoAdapter(
     private val enableAction: (Int) -> Unit,
-    private val context: Context
+    private val context: Context,
+    private val picasso: Picasso
 ) : RecyclerView.Adapter<PhotoHolder>() {
 
     private val photoList = mutableListOf<PhotoItem>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        PhotoHolder.create(parent, enableAction,context)
+        PhotoHolder.create(parent, enableAction,context,picasso)
 
 
     override fun onBindViewHolder(holder: PhotoHolder, position: Int) {
